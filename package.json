@@ -1,0 +1,38 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/main.js",
+  "build": {
+    "files": [
+      "dist/**/*"
+    ],
+    "appId": "spotter.toolkit",
+    "mac": {
+      "category": "tool"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:electron": "vite build -c vite.config.electron.ts",
+    "app:dist": "pnpm build && pnpm build:electron && electron-builder",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-react": "^0.39.3",
+    "@types/node": "^20.2.5",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "electron": "^25.0.0",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.41.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.9"
+  }
+}
