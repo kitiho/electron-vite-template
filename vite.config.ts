@@ -76,7 +76,8 @@ async function bundle(server: ViteDevServer) {
 // https://vitejs.dev/config/
 export default defineConfig(env => ({
   base: env.mode === 'production' ? './' : '/',
-  plugins: [react(),
+  plugins: [
+    react(),
     {
       name: 'electron-vite',
       configureServer(server) {
