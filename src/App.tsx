@@ -7,6 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
   // const settings = window.readSettings()
   const func = async () => {
+    // ipc
     const response = await window.readSettings.ping()
     console.log(response) // 打印 'pong'
   }
