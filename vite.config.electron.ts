@@ -15,6 +15,6 @@ export default defineConfig(env => ({
   },
   define: {
     // once again
-    'import.meta.env.ELECTRON_APP_URL': JSON.stringify('index.html'),
+    // 'import.meta.env.ELECTRON_APP_URL': `${join('./dist/index.html')}`,
   },
 }))

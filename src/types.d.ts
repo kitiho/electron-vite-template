@@ -1,5 +1,5 @@
 interface Window {
-  readSettings: {
-    ping: () => Promise<string>
+  electronAPI: {
+    getData: () => Promise<unknown>
   }
 }

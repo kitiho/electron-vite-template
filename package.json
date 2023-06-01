@@ -3,15 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "main": "dist/main.js",
-  "build": {
-    "files": [
-      "dist/**/*"
-    ],
-    "appId": "spotter.toolkit",
-    "mac": {
-      "category": "tool"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,6 +11,13 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@alicloud/devops20210625": "2.1.9",
+    "@alicloud/endpoint-util": "^0.0.1",
+    "@alicloud/openapi-client": "^0.4.6",
+    "@alicloud/openapi-util": "^0.3.1",
+    "@alicloud/pop-core": "^1.7.13",
+    "@alicloud/tea-typescript": "^1.8.0",
+    "@alicloud/tea-util": "^1.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -5,14 +5,11 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  // const settings = window.readSettings()
-  const func = async () => {
-    // ipc
-    const response = await window.readSettings.ping()
-    console.log(response) // 打印 'pong'
-  }
 
-  func()
+  const handleClick = async () => {
+    const data = await window.electronAPI.getData()
+    console.log(data)
+  }
 
   return (
     <>
@@ -26,6 +23,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+        <button onClick={handleClick}>通信</button>
         <button onClick={() => setCount(count => count + 1)}>
           count is {count}
         </button>
