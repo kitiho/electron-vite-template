@@ -2,6 +2,7 @@ import { join, resolve } from 'node:path'
 import { BrowserWindow, app, ipcMain } from 'electron'
 import { ListRepositoriesRequest } from '@alicloud/devops20210625'
 import { client, runtime } from './client'
+import { getAuthenticationURL } from './auth'
 
 let mainWindow: BrowserWindow | null
 
@@ -19,6 +20,37 @@ async function handleGetData() {
   catch (error) {
     return 'error'
   }
+}
+
+function handleLogin() {
+  let win: BrowserWindow | null = null
+  win = new BrowserWindow({
+    width: 1000,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: false,
+    },
+  })
+  win.loadURL(getAuthenticationURL())
+
+  const { session: { webRequest } } = win.webContents
+  const filter = {
+    urls: [
+      'http://localhost/callback*',
+    ],
+  }
+
+  function destroyAuthWin() {
+    if (!win)
+      return
+    win.close()
+    win = null
+  }
+
+  webRequest.onBeforeRequest(filter, async ({ url }) => {
+    mainWindow?.webContents.send('auth-success', url)
+    return destroyAuthWin()
+  })
 }
 
 function createWindow() {
@@ -55,6 +87,7 @@ function createWindow() {
 
 app.whenReady().then(() => {
   ipcMain.handle('getData', handleGetData)
+  ipcMain.handle('login', handleLogin)
   createWindow()
 })
 

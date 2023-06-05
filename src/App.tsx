@@ -5,10 +5,19 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [token, setToken] = useState('')
 
   const handleClick = async () => {
     const data = await window.electronAPI.getData()
     console.log(data)
+  }
+
+  window.electronAPI.onLoginSuccess((_event, value) => {
+    console.log(value)
+  })
+
+  const handleLogin = async () => {
+    window.electronAPI.login()
   }
 
   return (
@@ -24,6 +33,8 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={handleClick}>通信</button>
+        <button onClick={handleLogin}>登录</button>
+        <div>{token}</div>
         <button onClick={() => setCount(count => count + 1)}>
           count is {count}
         </button>
